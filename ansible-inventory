@@ -1,0 +1,61 @@
+[OSEv3:children]
+nodes
+masters
+etcd
+new_masters
+new_nodes
+
+[OSEv3:vars]
+deployment_type=origin
+ansible_ssh_user=root
+openshift_clock_enabled=true
+openshift_master_cluster_method=native
+openshift_master_cluster_public_hostname=<DOMAINNAME>
+openshift_master_default_subdomain=<SUBDOMAIN>
+openshift_master_identity_providers=[{'name': 'htpasswd_auth','login': 'true', 'challenge': 'true','kind': 'HTPasswdPasswordIdentityProvider','filename': '/etc/origin/master/htpasswd'}]
+openshift_master_htpasswd_users={'admin':'', 'jim':''}
+#openshift_master_cluster_hostname=<DOMAINNAME FOR INTERNAL OF CLUSTER>
+openshift_master_overwrite_named_certificates=true
+openshift_master_named_certificates=[{"certfile": "cert.crt", "keyfile": "cert.key"}]
+openshift_docker_insecure_registries=172.30.0.0/16
+
+# Enabling Cluster Metrics
+openshift_hosted_metrics_deploy=true
+openshift_metrics_image_version=v1.5.1
+# openshift_metrics_cassandra_storage_type=pv
+# openshift_metrics_cassandra_pvc_size=20Gi
+
+# Aggregating Container Logs
+openshift_hosted_logging_deploy=true
+openshift_logging_image_version=v1.5.1
+# openshift_logging_use_ops=true
+# openshift_logging_es_pvc_size=50Gi
+
+# Using Flannel
+openshift_use_openshift_sdn=false
+openshift_use_flannel=true
+flannel_type=ali-vpc
+flannel_interface=eth0
+openshift_cloudprovider_alicloud_access_key=
+openshift_cloudprovider_alicloud_secret_key=
+
+# default selectors for router and registry services
+openshift_router_selector='region=infra'
+openshift_registry_selector='region=infra'
+
+# openshift_metrics_heapster_standalone=false
+# openshift_docker_options
+
+[nodes]
+master01 openshift_schedulable=false
+infra01 openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
+
+[masters]
+master01
+
+[etcd]
+master01
+
+[new_nodes]
+
+[new_masters]
