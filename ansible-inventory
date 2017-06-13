@@ -7,6 +7,7 @@ new_nodes
 
 [OSEv3:vars]
 deployment_type=origin
+openshift_release=v1.5
 ansible_ssh_user=root
 openshift_clock_enabled=true
 openshift_master_cluster_method=native
