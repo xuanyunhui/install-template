@@ -19,6 +19,7 @@ openshift_master_htpasswd_users={'admin':'', 'jim':''}
 openshift_master_overwrite_named_certificates=true
 openshift_master_named_certificates=[{"certfile": "cert.crt", "keyfile": "cert.key"}]
 openshift_docker_insecure_registries=172.30.0.0/16
+os_firewall_use_firewalld=True
 
 # Enabling Cluster Metrics
 openshift_hosted_metrics_deploy=true
